@@ -31,7 +31,7 @@ class CarInterface(CarInterfaceBase):
     ret.communityFeature = True
 
     ret.steerActuatorDelay = 0.1  # Default delay
-    ret.steerRateCost = 0.5
+    ret.steerRateCost = 0.45
     ret.steerLimitTimer = 0.8
     tire_stiffness_factor = 1.
 
@@ -42,20 +42,21 @@ class CarInterface(CarInterfaceBase):
       ret.steerRatio = 13.8 * 1.15  # 13.8 is spec end-to-end
       ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
-    elif candidate in [CAR.SONATA, CAR.SONATA_H]:
+    elif candidate == [CAR.SONATA, CAR.SONATA_H]:
       ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1513. + STD_CARGO_KG
       ret.wheelbase = 2.84
       ret.steerRatio = 13.27 * 1.15   # 15% higher at the center seems reasonable
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      tire_stiffness_factor = 0.65
+      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0., 25.], [0., 25.]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.01, 0.13], [0.001, 0.005]]
     elif candidate == CAR.SONATA_2019:
       ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 4497. * CV.LB_TO_KG
       ret.wheelbase = 2.804
       ret.steerRatio = 13.27 * 1.15   # 15% higher at the center seems reasonable
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0., 25.], [0., 25.]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.01, 0.13], [0.001, 0.005]]
     elif candidate == CAR.PALISADE:
       ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1999. + STD_CARGO_KG
