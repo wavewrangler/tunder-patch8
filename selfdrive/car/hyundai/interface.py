@@ -35,13 +35,19 @@ class CarInterface(CarInterfaceBase):
     ret.steerLimitTimer = 0.8
     tire_stiffness_factor = 1.
 
-    if candidate in [CAR.SANTA_FE, CAR.SANTA_FE_1]:
-      ret.lateralTuning.pid.kf = 0.00005
-      ret.mass = 1694 + STD_CARGO_KG
-      ret.wheelbase = 2.766
-      ret.steerRatio = 13.8 * 1.15  # 13.8 is spec end-to-end
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+    if candidate == CAR.KIA_STINGER:
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.7
+      ret.steerActuatorDelay = 0.08 # Stinger GT Limited AWD 3.3T stock value (Tunder's 2020) 
+      ret.steerLimitTimer = 0.4 # stock is 0.01, 0.4 works well, trying 0.2, 0.1 for quicker turn in.  0.1 is strong on highway, notchy in town
+      tire_stiffness_factor = 1.125 # LiveParameters (Tunder's 2020)
+      ret.steerRateCost = 1.0
+      ret.mass = 1825.0 + STD_CARGO_KG
+      ret.wheelbase = 2.906 # https://www.kia.com/us/en/stinger/specs
+      ret.steerRatio = 14.4   # up from 13.56, liveparameters (10.28 total)
     elif candidate == [CAR.SONATA, CAR.SONATA_H]:
       ret.lateralTuning.init('indi')
       ret.lateralTuning.indi.innerLoopGain = 4.0
@@ -118,19 +124,13 @@ class CarInterface(CarInterfaceBase):
       tire_stiffness_factor = 0.5
       ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
-    elif candidate == CAR.KIA_STINGER:
-      ret.lateralTuning.init('indi')
-      ret.lateralTuning.indi.innerLoopGain = 3.0
-      ret.lateralTuning.indi.outerLoopGain = 2.0
-      ret.lateralTuning.indi.timeConstant = 1.0
-      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
-      ret.steerActuatorDelay = 0.08 # Stinger GT Limited AWD 3.3T stock value (Tunder's 2020) 
-      ret.steerLimitTimer = 0.4 # stock is 0.01, 0.4 works well, trying 0.2, 0.1 for quicker turn in.  0.1 is strong on highway, notchy in town
-      tire_stiffness_factor = 1.125 # LiveParameters (Tunder's 2020)
-      ret.steerRateCost = 1.0
-      ret.mass = 1825.0 + STD_CARGO_KG
-      ret.wheelbase = 2.906 # https://www.kia.com/us/en/stinger/specs
-      ret.steerRatio = 14.4   # up from 13.56, liveparameters (10.28 total)
+    elif candidate in [CAR.SANTA_FE, CAR.SANTA_FE_1]:
+      ret.lateralTuning.pid.kf = 0.00005
+      ret.mass = 1694 + STD_CARGO_KG
+      ret.wheelbase = 2.766
+      ret.steerRatio = 13.8 * 1.15  # 13.8 is spec end-to-end
+      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.KONA:
       ret.lateralTuning.pid.kf = 0.00006
       ret.mass = 1275. + STD_CARGO_KG
