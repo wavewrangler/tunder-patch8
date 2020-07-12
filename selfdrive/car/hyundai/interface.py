@@ -55,7 +55,7 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.indi.timeConstant = 1.0
       ret.lateralTuning.indi.actuatorEffectiveness = 1.0
       ret.steerActuatorDelay = 0.12  
-      ret.steerLimitTimer = 0.4 # stock is 0.01, 0.2 and 0.1 improve highway turn-in and decrease hugging.  kinda edgy in the city tho.  
+      ret.steerLimitTimer = 0.2 # was at 0.4 stock is 0.01, 0.2 and 0.1 improve highway turn-in and decrease hugging.  kinda edgy in the city tho.  
       ret.steerRateCost = 1.0
       ret.steerRatio = 15.5
 #      ret.lateralTuning.pid.kf = 0.00005
