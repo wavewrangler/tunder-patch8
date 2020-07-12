@@ -50,12 +50,12 @@ class CarInterface(CarInterfaceBase):
       ret.steerRatio = 14.4   # up from 13.56, liveparameters (10.28 total)
     elif candidate == [CAR.SONATA, CAR.SONATA_H]:
       ret.lateralTuning.init('indi')
-      ret.lateralTuning.indi.innerLoopGain = 4.0
-      ret.lateralTuning.indi.outerLoopGain = 3.0
-      ret.lateralTuning.indi.timeConstant = 1.0
-      ret.lateralTuning.indi.actuatorEffectiveness = 1.0
-      ret.steerActuatorDelay = 0.12  
-      ret.steerLimitTimer = 0.2 # was at 0.4 stock is 0.01, 0.2 and 0.1 improve highway turn-in and decrease hugging.  kinda edgy in the city tho.  
+      ret.lateralTuning.indi.innerLoopGain = 3.5 # was 4 outer and inner are gains. Higher values = more steering
+      ret.lateralTuning.indi.outerLoopGain = 2.5 # was 3 outer and inner are gains. Higher values = more steering
+      ret.lateralTuning.indi.timeConstant = 2.0 # was 1.0 timeconstant is smoothing. Higher values == more smoothing
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.3 # was 1.0 how much it steers. Lower values == more steering
+      ret.steerActuatorDelay = 0.1 # was 0.12  
+      ret.steerLimitTimer = 0.4 #  stock is 0.01, 0.2 and 0.1 improve highway turn-in and decrease hugging.  kinda edgy in the city tho.  
       ret.steerRateCost = 1.0
       ret.steerRatio = 15.5
 #      ret.lateralTuning.pid.kf = 0.00005
