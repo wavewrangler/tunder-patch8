@@ -48,12 +48,12 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 1825.0 + STD_CARGO_KG #
       ret.wheelbase = 2.906 # https://www.kia.com/us/en/stinger/specs
       ret.steerRatio = 14.4   # up from 13.56, liveparameters (10.28 total)
-    elif candidate == [CAR.SONATA, CAR.SONATA_H]:
+    elif candidate in [CAR.SONATA, CAR.SONATA_H]:
       ret.lateralTuning.init('indi')
-      ret.lateralTuning.indi.innerLoopGain = 4.0 # was 3.5 outer and inner are gains. Higher values = more steering 
-      ret.lateralTuning.indi.outerLoopGain = 3.0 # was 2.5 outer and inner are gains. Higher values = more steering
+      ret.lateralTuning.indi.innerLoopGain = 3.0 # was 4 outer and inner are gains. Higher values = more steering 
+      ret.lateralTuning.indi.outerLoopGain = 2.0 # was 3 outer and inner are gains. Higher values = more steering
       ret.lateralTuning.indi.timeConstant = 1.0 # was 2.0 timeconstant is smoothing. Higher values == more smoothing
-      ret.lateralTuning.indi.actuatorEffectiveness = 1.0 # was 1.3 how much it steers. Lower values == more steering
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.25 # was 1 how much it steers. Lower values == more steering
       ret.steerActuatorDelay = 0.12 # was 1
       ret.steerLimitTimer = 0.4 #  stock is 0.01, 0.2 and 0.1 improve highway turn-in and decrease hugging.  kinda edgy in the city tho.  
       ret.steerRateCost = 1.0
