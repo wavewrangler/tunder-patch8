@@ -48,7 +48,7 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 1825.0 + STD_CARGO_KG #
       ret.wheelbase = 2.906 # https://www.kia.com/us/en/stinger/specs
       ret.steerRatio = 14.4   # up from 13.56, liveparameters (10.28 total)
-    elif candidate in [CAR.SONATA, CAR.SONATA_H]:
+    elif candidate == [CAR.SONATA, CAR.SONATA_H]:
       ret.lateralTuning.init('indi')
       ret.lateralTuning.indi.innerLoopGain = 4.0 # was 3.5 outer and inner are gains. Higher values = more steering 
       ret.lateralTuning.indi.outerLoopGain = 3.0 # was 2.5 outer and inner are gains. Higher values = more steering
