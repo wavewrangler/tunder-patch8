@@ -42,7 +42,7 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.indi.timeConstant = 1.0
       ret.lateralTuning.indi.actuatorEffectiveness = 1.7
       ret.steerActuatorDelay = 0.08 # Stinger GT Limited AWD 3.3T stock value (Tunder's 2020) 
-      ret.steerLimitTimer = 0.4 # stock is 0.01, 0.4 works well, trying 0.2, 0.1 for quicker turn in.  0.1 is strong on highway, notchy in town
+      ret.steerLimitTimer = 0.4 # was 0.4 stock is 0.01, 0.4 works well, trying 0.2, 0.1 for quicker turn in.  0.1 is strong on highway, notchy in town
       tire_stiffness_factor = 1.125 # LiveParameters (Tunder's 2020)
       ret.steerRateCost = 1.0
       ret.mass = 1825.0 + STD_CARGO_KG #
@@ -50,12 +50,12 @@ class CarInterface(CarInterfaceBase):
       ret.steerRatio = 14.4   # up from 13.56, liveparameters (10.28 total)
     elif candidate in [CAR.SONATA, CAR.SONATA_H]:
       ret.lateralTuning.init('indi')
-      ret.lateralTuning.indi.innerLoopGain = 3.0 # was 4 outer and inner are gains. Higher values = more steering 
-      ret.lateralTuning.indi.outerLoopGain = 2.0 # was 3 outer and inner are gains. Higher values = more steering
-      ret.lateralTuning.indi.timeConstant = 1.0 # was 2.0 timeconstant is smoothing. Higher values == more smoothing
-      ret.lateralTuning.indi.actuatorEffectiveness = 1.5 # was 1 how much it steers. Lower values == more steering
-      ret.steerActuatorDelay = 0.12 # was 1
-      ret.steerLimitTimer = 0.4 #  stock is 0.01, 0.2 and 0.1 improve highway turn-in and decrease hugging.  kinda edgy in the city tho.  
+      ret.lateralTuning.indi.innerLoopGain = 1.62 # was 3 was 4 outer and inner are gains. Higher values = more steering 
+      ret.lateralTuning.indi.outerLoopGain = 4.05 # was 2.0 outer and inner are gains. Higher values = more steering
+      ret.lateralTuning.indi.timeConstant = 1.49 # was 1.0 timeconstant is smoothing. Higher values == more smoothing
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.62 # was 1.5 how much it steers. Lower values == more steering
+      ret.steerActuatorDelay = 0.52 # was 0.6
+      ret.steerLimitTimer = 0.3 #  stock is 0.01, 0.2 and 0.1 improve highway turn-in and decrease hugging.  kinda edgy in the city tho.  
       ret.steerRateCost = 1.0
       ret.steerRatio = 15.5
 #      ret.lateralTuning.pid.kf = 0.00005
